@@ -1,0 +1,21 @@
+{
+  "name": "red-horizon-rts",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Red Horizon — an original, open-source isometric RTS in the spirit of classic 2000s real-time strategy games. Fully procedural assets, deterministic simulation, zero runtime dependencies.",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite --port 5199 --strictPort",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --port 5199",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.0",
+    "vite": "^6.0.0",
+    "vitest": "^3.0.0"
+  }
+}
