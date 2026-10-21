@@ -4,7 +4,7 @@ import { makeWorld, run, stateHash } from './helpers';
 describe('simulation determinism', () => {
   it('same seed + same command stream = identical battles', () => {
     const script = (w: ReturnType<typeof makeWorld>) => {
-      // deploy both MCVs, then poke some orders at fixed ticks
+      // deploy both crawlers, then poke some orders at fixed ticks
       const units = [...w.units.values()];
       for (const u of units) w.issue({ kind: 'deploy', units: [u.id] });
       run(w, 50);

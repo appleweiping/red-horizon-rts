@@ -63,7 +63,7 @@ export class Unit {
 
   // states
   deployed = false;
-  idleTicks = 0; // mirage disguise timer
+  idleTicks = 0; // tree-disguise timer
   aegisUntil = 0;
   dead = false;
   /** Guard anchor: units pursue targets only a short leash from here. */
@@ -73,9 +73,9 @@ export class Unit {
   /** Commando C4 plant cooldown. */
   c4Cooldown = 0;
 
-  /** Phantom tanks read as scenery to enemies while sitting still. */
+  /** Thicket tanks read as scenery to enemies while sitting still. */
   get disguised(): boolean {
-    return !!this.def.mirage && this.idleTicks > 40;
+    return !!this.def.treeDisguise && this.idleTicks > 40;
   }
 
   /** ids are allocated by the owning World so parallel worlds never interfere. */

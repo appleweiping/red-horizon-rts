@@ -307,7 +307,7 @@ function updateDeploy(world: World, u: Unit): void {
     u.nextOrder();
     return;
   }
-  if (u.def.deployable === 'mcv' && u.def.deploysInto) {
+  if (u.def.deployable === 'base' && u.def.deploysInto) {
     const def = getBuilding(u.def.deploysInto);
     const tx = Math.round(u.x - def.w / 2);
     const ty = Math.round(u.y - def.h / 2);

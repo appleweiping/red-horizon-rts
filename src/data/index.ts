@@ -22,7 +22,7 @@ export function unitsForFaction(faction: FactionId, tab?: ProductionTab): UnitDe
   );
 }
 
-/** Buildings a faction can construct (excludes conyard — it comes from an MCV — and neutrals). */
+/** Buildings a faction can construct (excludes conyard — it comes from a Pioneer Crawler — and neutrals). */
 export function buildingsForFaction(faction: FactionId, tab?: ProductionTab): BuildingDef[] {
   return BUILDINGS.filter(
     (b) =>

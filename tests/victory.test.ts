@@ -6,7 +6,7 @@ import { checkVictory } from '../src/sim/victory';
 import { makeWorld, run } from './helpers';
 
 describe('victory conditions', () => {
-  it('eliminates a player with no structures and no MCV', () => {
+  it('eliminates a player with no structures and no crawler', () => {
     const w = makeWorld();
     // both players deploy
     for (const u of w.units.values()) w.issue({ kind: 'deploy', units: [u.id] });
@@ -16,7 +16,7 @@ describe('victory conditions', () => {
       if (b.player === 1) killEntity(w, b, 0, 0);
     }
     for (const u of w.units.values()) {
-      if (u.player === 1 && u.def.deployable === 'mcv') killEntity(w, u, 0, 0);
+      if (u.player === 1 && u.def.deployable === 'base') killEntity(w, u, 0, 0);
     }
     checkVictory(w);
     expect(w.players[1].defeated).toBe(true);
@@ -24,9 +24,9 @@ describe('victory conditions', () => {
     w.events.drain(); // gameOver event exists
   });
 
-  it('does not eliminate a player who still holds an MCV', () => {
+  it('does not eliminate a player who still holds a Pioneer Crawler', () => {
     const w = makeWorld();
-    // player 1 keeps the starting MCV, has no buildings
+    // player 1 keeps the starting crawler, has no buildings
     checkVictory(w);
     expect(w.players[1].defeated).toBe(false);
     expect(w.gameOver).toBe(false);

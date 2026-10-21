@@ -117,9 +117,9 @@ export interface UnitDef {
   harvester?: boolean;
   /** Captures enemy/neutral buildings (consumed on use). */
   engineer?: boolean;
-  /** 'mcv' deploys into a building; 'fortify' toggles a dug-in stance. */
-  deployable?: 'mcv' | 'fortify';
-  /** Def id of the building an MCV deploys into. */
+  /** 'base' deploys into a building; 'fortify' toggles a dug-in stance. */
+  deployable?: 'base' | 'fortify';
+  /** Def id of the building a crawler deploys into. */
   deploysInto?: string;
   /** Detonates on contact with the target for `damage` of its first weapon. */
   suicide?: boolean;
@@ -128,7 +128,7 @@ export interface UnitDef {
   /** Aircraft ammo before it must return to an airfield (0 = unlimited). */
   ammo?: number;
   /** Renders as a tree to enemies while idle. */
-  mirage?: boolean;
+  treeDisguise?: boolean;
   /** Commando: plants charges that level buildings instantly. */
   c4?: boolean;
   /** Only one may exist per player at a time. */
@@ -185,7 +185,7 @@ export interface BuildingDef {
 
 // ------------------------------------------------------------ superweapons --
 
-export type PowerKind = 'storm' | 'nuke' | 'chrono' | 'aegis';
+export type PowerKind = 'storm' | 'nuke' | 'phase' | 'aegis';
 
 export interface SupportPowerDef {
   id: string;
@@ -199,8 +199,8 @@ export interface SupportPowerDef {
   radius: number;
   /** Total damage delivered (storm: split across bolts; nuke: center hit). */
   damage: number;
-  /** EVA announcement key when launched. */
-  evaLaunch: string;
+  /** Announcer line when launched. */
+  announce: string;
 }
 
 // ---------------------------------------------------------------- commands --

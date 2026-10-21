@@ -9,7 +9,7 @@ import type { World } from '../sim/world';
 
 /**
  * Skirmish AI: a pragmatic state machine that plays the same game the human
- * does — it deploys its MCV, grows an economy, climbs the tech tree, walls
+ * does — it deploys its Pioneer Crawler, grows an economy, climbs the tech tree, walls
  * the base with defenses, scouts, masses waves, defends, captures oil and
  * fires superweapons. Difficulty tunes tempo and army size, not cheats
  * (hard gets a small income trickle, clearly documented).
@@ -69,14 +69,14 @@ export function updateAI(world: World, player: PlayerState): void {
 
   const own = collectOwn(world, player.id);
 
-  // --- 0. deploy the MCV -----------------------------------------------------
+  // --- 0. deploy the crawler -----------------------------------------------------
   if (own.counts.get('conyard') === undefined) {
-    const mcv = own.units.find((u) => u.def.deployable === 'mcv');
-    if (mcv) {
-      if (mcv.order.kind !== 'deploy') world.issue({ kind: 'deploy', units: [mcv.id] });
+    const crawler = own.units.find((u) => u.def.deployable === 'base');
+    if (crawler) {
+      if (crawler.order.kind !== 'deploy') world.issue({ kind: 'deploy', units: [crawler.id] });
       return; // nothing else matters until the base exists
     }
-    // no conyard, no MCV: try to build one if a factory survives
+    // no conyard, no crawler: try to build one if a factory survives
     maybeQueueUnit(world, player, 'vehicle', 'pioneer');
   }
 
@@ -179,7 +179,7 @@ function planStructures(
   const aaDef = faction === 'pact' ? 'flak_cannon' : 'sam_site';
   const bigDef = faction === 'pact' ? 'arc_tower' : 'lance_tower';
   const superA = faction === 'pact' ? 'icbm_silo' : 'storm_array';
-  const superB = faction === 'pact' ? 'aegis_generator' : 'chrono_relay';
+  const superB = faction === 'pact' ? 'aegis_generator' : 'phase_gate';
 
   // priority ladder — first match wins the build slot
   const wantPower =
@@ -310,7 +310,7 @@ function planUnits(world: World, player: PlayerState, own: OwnForces, tune: Tuni
     if (count(own, 'ifv') < wantIfv) maybeQueueUnit(world, player, 'vehicle', 'ifv');
     else if (count(own, 'wolf') < Math.ceil(tune.maxArmy * 0.45)) maybeQueueUnit(world, player, 'vehicle', 'wolf');
     else if (count(own, 'lance') < 3) maybeQueueUnit(world, player, 'vehicle', 'lance');
-    else maybeQueueUnit(world, player, 'vehicle', 'phantom');
+    else maybeQueueUnit(world, player, 'vehicle', 'thicket');
 
     if (count(own, 'kestrel') < 3) maybeQueueUnit(world, player, 'air', 'kestrel');
     if (!memory(world, player).navalGiveUp && count(own, 'corvette') < 2) {
@@ -478,7 +478,7 @@ function fireReadyPowers(world: World, player: PlayerState, own: OwnForces, mem:
       if (attacker && own.army.length >= 8) {
         world.issue({ kind: 'firePower', player: player.id, power: pc.def.id, x: attacker.x, y: attacker.y });
       }
-    } else if (kind === 'chrono') {
+    } else if (kind === 'phase') {
       // hurl the strike force at the enemy base
       const target = pickAttackTarget(world, player, mem);
       const force = own.army.filter((u) => u.def.domain === 'ground').slice(0, 8);

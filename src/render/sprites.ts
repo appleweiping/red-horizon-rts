@@ -615,7 +615,7 @@ function paintBuilding(
       ctx.fill();
       break;
     }
-    case 'chrono_relay': {
+    case 'phase_gate': {
       isoBox(ctx, 0.2, 0.2, 1.6, 1.6, wallH * 0.4, body);
       ctx.strokeStyle = '#9fd4ff';
       ctx.lineWidth = 3;

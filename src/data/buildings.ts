@@ -69,7 +69,7 @@ export const BUILDINGS: BuildingDef[] = [
     prerequisites: ['refinery'], factory: 'ship', naval: true,
   },
   {
-    id: 'lab', name: 'Battle Lab',
+    id: 'lab', name: 'Research Lab',
     desc: 'Unlocks tier-3 technology and superweapons. Guard it well.',
     faction: 'both', tab: 'building',
     cost: 2000, buildTime: 250, hp: 700, armor: 'steel',
@@ -119,12 +119,12 @@ export const BUILDINGS: BuildingDef[] = [
     prerequisites: ['lab'], superweapon: 'stormstrike', needsPower: true,
   },
   {
-    id: 'chrono_relay', name: 'Chrono Relay',
+    id: 'phase_gate', name: 'Phase Gate',
     desc: 'Support superweapon. Teleports your strike force across the map.',
     faction: 'concord', tab: 'building',
     cost: 2500, buildTime: 313, hp: 900, armor: 'concrete',
     w: 2, h: 2, power: -80, sight: 5,
-    prerequisites: ['lab'], superweapon: 'chronoshift', needsPower: true,
+    prerequisites: ['lab'], superweapon: 'phase_jump', needsPower: true,
   },
 
   // --------------------------------------------------------------- Pact ----

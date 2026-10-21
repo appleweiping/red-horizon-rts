@@ -25,7 +25,7 @@ export class Menu {
 
     const panel = div('menu-panel');
     panel.appendChild(div('menu-title', 'RED HORIZON'));
-    panel.appendChild(div('menu-subtitle', 'An original isometric RTS in the classic 2000s spirit'));
+    panel.appendChild(div('menu-subtitle', 'A skirmish RTS against computer opponents'));
 
     // faction cards
     const fRow = div('faction-row');
@@ -125,8 +125,8 @@ export class Menu {
       'Left-drag: select · Right-click: move / attack · A: attack-move · S: stop · ' +
       'D: deploy · H: base · Ctrl+0-9: groups · Esc: menu'));
     panel.appendChild(div('menu-footer',
-      'A fan-made homage to the golden age of isometric RTS. 100% original code & procedural art. ' +
-      'Not affiliated with or endorsed by Electronic Arts.'));
+      'Inspired by the isometric RTS games of the early 2000s. All code, names and art are original. ' +
+      'Source: github.com/appleweiping/red-horizon-rts'));
 
     this.root.appendChild(panel);
     this.root.style.display = 'flex';
@@ -159,7 +159,7 @@ export class Menu {
   showPause(handlers: {
     onResume: () => void; onQuit: () => void;
     volume: number; onVolume: (v: number) => void;
-    evaOn: boolean; onEva: (on: boolean) => void;
+    voiceOn: boolean; onVoice: (on: boolean) => void;
   }): void {
     this.root.className = 'menu-root translucent';
     this.root.replaceChildren();
@@ -180,11 +180,11 @@ export class Menu {
     volWrap.appendChild(vol);
     panel.appendChild(volWrap);
 
-    const evaBtn = button('opt-btn wide', handlers.evaOn ? 'EVA VOICE: ON' : 'EVA VOICE: OFF', () => {
-      handlers.onEva(!(evaBtn.textContent ?? '').includes('ON'));
-      evaBtn.textContent = (evaBtn.textContent ?? '').includes('ON') ? 'EVA VOICE: OFF' : 'EVA VOICE: ON';
+    const voiceBtn = button('opt-btn wide', handlers.voiceOn ? 'ANNOUNCER: ON' : 'ANNOUNCER: OFF', () => {
+      handlers.onVoice(!(voiceBtn.textContent ?? '').includes('ON'));
+      voiceBtn.textContent = (voiceBtn.textContent ?? '').includes('ON') ? 'ANNOUNCER: OFF' : 'ANNOUNCER: ON';
     });
-    panel.appendChild(evaBtn);
+    panel.appendChild(voiceBtn);
 
     panel.appendChild(button('opt-btn wide danger', 'ABANDON OPERATION', handlers.onQuit));
     this.root.appendChild(panel);

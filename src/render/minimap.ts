@@ -5,8 +5,8 @@ import type { Camera } from './iso';
 
 /**
  * Minimap: 1 tile = 1 px on a backing canvas, scaled into the sidebar.
- * Without a powered radar the map shows static noise, RA2-style discipline:
- * information is a building you can lose.
+ * Without a powered radar the map shows static noise: information is a
+ * building you can lose.
  */
 export class Minimap {
   readonly canvas: HTMLCanvasElement;

@@ -8,7 +8,7 @@ simulation that *is* the game, and a presentation layer that merely watches it.
 │  Presentation (browser only)                                       │
 │  render/  renderer · procedural sprites · terrain · fx · minimap   │
 │  ui/      sidebar HUD · input · selection · menus · messages       │
-│  audio/   WebAudio synth · EVA speech                              │
+│  audio/   WebAudio synth · speech announcer                        │
 └──────────────▲──────────────────────────────┬──────────────────────┘
                │ reads state / SimEvents      │ issues Commands
 ┌──────────────┴──────────────────────────────▼──────────────────────┐
@@ -61,8 +61,8 @@ actually reachable in each faction's tech tree.
 | Fog of war | `sim/fog.ts` | per-player `Uint8Array` (shroud / explored / visible), precomputed sight circles, staggered updates every 4 ticks |
 | Combat | `sim/combat.ts` | target acquisition via spatial hash, per-weapon cooldowns/domains, projectiles (hitscan, ballistic, homing, chain-arc, beam, bomb), splash with linear falloff, veterancy |
 | Economy | `sim/economy.ts` | harvester state machine (seek → mine → haul → unload), ore/gem tiles deplete back to grass, oil derrick trickle |
-| Production | `sim/production.ts` | RA-style parallel tabs, pay-as-you-go financing, multi-factory speedup, low-power slowdown, ready-to-place structures |
-| Superweapons | `sim/superweapons.ts` | charge banks tied to living structures, storm / nuke strikes scheduled over future ticks, chrono teleport, aegis shield |
+| Production | `sim/production.ts` | parallel tabs, pay-as-you-go financing, multi-factory speedup, low-power slowdown, ready-to-place structures |
+| Superweapons | `sim/superweapons.ts` | charge banks tied to living structures, storm / nuke strikes scheduled over future ticks, phase-jump teleport, aegis shield |
 | AI | `ai/ai.ts` | priority-ladder base building, spiral placement probes, economy targets, threat response, wave attacks, power usage; difficulty tunes tempo and size (hard gets a small documented income trickle) |
 
 ## Rendering without assets

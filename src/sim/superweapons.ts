@@ -49,7 +49,7 @@ export function updatePowerCharges(world: World, player: PlayerState): void {
   }
 }
 
-/** Validate and launch. `units` carries the chrono strike force. */
+/** Validate and launch. `units` carries the phase-jump strike force. */
 export function firePower(
   world: World, player: PlayerState, powerId: string,
   x: number, y: number, units: number[] = [],
@@ -74,7 +74,7 @@ export function firePower(
         firedAt: world.tick, boltsLeft: 1, done: false,
       });
       break;
-    case 'chrono': {
+    case 'phase': {
       // teleport the strike force in a spiral around the destination
       let placed = 0;
       for (const id of units) {

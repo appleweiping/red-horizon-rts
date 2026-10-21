@@ -99,7 +99,7 @@ export class AudioEngine {
       case 'alarm':
         for (let i = 0; i < 3; i++) this.tone('sawtooth', 620, 400, 0.16, 0.22, t + i * 0.2);
         break;
-      case 'chrono':
+      case 'phase':
         this.sweepNoise(0.5, 3000, 300, 0.3, t);
         this.tone('sine', 880, 220, 0.4, 0.25, t);
         break;

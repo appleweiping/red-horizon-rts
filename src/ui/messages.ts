@@ -1,4 +1,4 @@
-/** Screen message ticker (top-left), RA2-style stacked fading lines. */
+/** Screen message ticker (top-left): stacked lines that fade out. */
 export class Messages {
   private el: HTMLElement;
 

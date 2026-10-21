@@ -245,9 +245,9 @@ export class Input {
       if (sx >= x && sx <= x + w && sy >= y && sy <= y + h) hits.push(u.id);
     }
     if (hits.length > 0) {
-      // prefer combat units: drop harvesters/mcv when mixed
+      // prefer combat units: drop harvesters/crawlers when mixed
       const units = hits.map((id) => this.world.units.get(id)!);
-      const combat = units.filter((u) => !u.def.harvester && u.def.deployable !== 'mcv');
+      const combat = units.filter((u) => !u.def.harvester && u.def.deployable !== 'base');
       this.selection.selectMany((combat.length > 0 ? combat : units).map((u) => u.id), additive);
     } else if (!additive) {
       this.selection.clear();

@@ -35,7 +35,7 @@ interface ButtonRefs {
   state: string;
 }
 
-/** The RA2-style right sidebar: economy readouts, radar, build tabs, powers. */
+/** Right-hand sidebar: economy readouts, radar, build tabs, powers. */
 export class Hud {
   private world: World;
   private humanId: number;

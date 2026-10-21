@@ -91,15 +91,15 @@ describe('production', () => {
     expect(progressStarved).toBeLessThan(progressHealthy);
   });
 
-  it('MCV deploys into a construction yard', () => {
+  it('Pioneer Crawler deploys into a construction yard', () => {
     const w = makeWorld();
-    const mcv = [...w.units.values()].find((u) => u.player === 0 && u.def.deployable === 'mcv')!;
-    expect(mcv).toBeDefined();
-    w.issue({ kind: 'deploy', units: [mcv.id] });
+    const crawler = [...w.units.values()].find((u) => u.player === 0 && u.def.deployable === 'base')!;
+    expect(crawler).toBeDefined();
+    w.issue({ kind: 'deploy', units: [crawler.id] });
     run(w, 10);
     const conyard = [...w.buildings.values()].find((b) => b.def.conyard && b.player === 0);
     expect(conyard).toBeDefined();
-    expect(w.units.has(mcv.id)).toBe(false);
+    expect(w.units.has(crawler.id)).toBe(false);
   });
 });
 

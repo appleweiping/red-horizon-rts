@@ -2,7 +2,7 @@ import type { SimEvent } from './types';
 
 /**
  * Simulation event sink. The sim pushes events each tick; consumers (renderer,
- * audio, EVA, AI) drain them after stepping. Kept as a plain queue rather than
+ * audio, announcer, AI) drain them after stepping. Kept as a plain queue rather than
  * subscriptions so the sim stays deterministic and side-effect free.
  */
 export class EventQueue {

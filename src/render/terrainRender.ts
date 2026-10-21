@@ -102,7 +102,7 @@ export function drawTerrain(
   }
 }
 
-/** A tree: also used to disguise phantom tanks, so keep it distinctive-free. */
+/** A tree: also used to disguise thicket tanks, so keep it distinctive-free. */
 export function drawTree(ctx: CanvasRenderingContext2D, cx: number, cy: number, seed: number): void {
   const s = 0.85 + (seed % 30) / 100;
   ctx.fillStyle = '#54381e';

@@ -13,7 +13,7 @@ export function checkVictory(world: World): void {
   for (const p of world.players) {
     if (p.defeated) continue;
     let hasBuilding = false;
-    let hasMcv = false;
+    let hasCrawler = false;
     for (const b of world.buildings.values()) {
       if (!b.dead && b.player === p.id) {
         hasBuilding = true;
@@ -22,13 +22,13 @@ export function checkVictory(world: World): void {
     }
     if (!hasBuilding) {
       for (const u of world.units.values()) {
-        if (!u.dead && u.player === p.id && u.def.deployable === 'mcv') {
-          hasMcv = true;
+        if (!u.dead && u.player === p.id && u.def.deployable === 'base') {
+          hasCrawler = true;
           break;
         }
       }
     }
-    if (!hasBuilding && !hasMcv) {
+    if (!hasBuilding && !hasCrawler) {
       p.defeated = true;
       world.events.emit({ kind: 'playerDefeated', player: p.id });
       for (const u of world.units.values()) {

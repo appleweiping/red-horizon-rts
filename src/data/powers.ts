@@ -14,18 +14,18 @@ export const POWERS: SupportPowerDef[] = [
     chargeTicks: 8 * MIN,
     radius: 4,
     damage: 110, // per bolt; the storm drops ~14 bolts
-    evaLaunch: 'Tempest strike initiated.',
+    announce: 'Tempest strike initiated.',
   },
   {
-    id: 'chronoshift',
-    name: 'Chrono Relay',
+    id: 'phase_jump',
+    name: 'Phase Gate',
     desc: 'Teleports your selected combat units to the target location.',
-    kind: 'chrono',
+    kind: 'phase',
     faction: 'concord',
     chargeTicks: 5 * MIN,
     radius: 3,
     damage: 0,
-    evaLaunch: 'Chrono relay engaged.',
+    announce: 'Phase jump engaged.',
   },
   {
     id: 'icbm',
@@ -36,7 +36,7 @@ export const POWERS: SupportPowerDef[] = [
     chargeTicks: 10 * MIN,
     radius: 5,
     damage: 1500,
-    evaLaunch: 'Missile launched.',
+    announce: 'Missile launched.',
   },
   {
     id: 'aegis',
@@ -47,7 +47,7 @@ export const POWERS: SupportPowerDef[] = [
     chargeTicks: 5 * MIN,
     radius: 4,
     damage: 0,
-    evaLaunch: 'Aegis field deployed.',
+    announce: 'Aegis field deployed.',
   },
 ];
 

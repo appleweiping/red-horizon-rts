@@ -119,7 +119,7 @@ export class Renderer {
       drawables.push({
         depth: ux + uy + (u.def.domain === 'air' ? 90 : 0),
         draw: () => {
-          // phantom disguise: enemies see a tree
+          // thicket disguise: enemies see a tree
           if (u.disguised && !isOwn) {
             drawTree(ctx, cx, cy, hash2(u.id, 31));
             return;

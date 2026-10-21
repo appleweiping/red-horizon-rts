@@ -36,7 +36,7 @@ export const WEAPONS: WeaponDef[] = [
     speed: 0.5, splash: 0.4, antiGround: true, antiAir: false, sound: 'cannon',
   },
   {
-    id: 'phantom_gun', name: 'Spectral Cannon',
+    id: 'thicket_gun', name: 'Ambush Cannon',
     damage: 58, rof: 36, range: 5.5, warhead: 'ap', projectile: 'instant',
     antiGround: true, antiAir: false, sound: 'cannon',
   },

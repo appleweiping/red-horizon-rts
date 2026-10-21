@@ -80,8 +80,8 @@ export class World {
     // every player starts with a Pioneer Crawler at their spawn
     for (let i = 0; i < this.players.length; i++) {
       const s = this.map.spawns[i % this.map.spawns.length];
-      const mcv = this.addUnit(getUnit('pioneer'), i, s.x + 0.5, s.y + 0.5);
-      mcv.facing = Math.atan2(this.map.height / 2 - s.y, this.map.width / 2 - s.x);
+      const crawler = this.addUnit(getUnit('pioneer'), i, s.x + 0.5, s.y + 0.5);
+      crawler.facing = Math.atan2(this.map.height / 2 - s.y, this.map.width / 2 - s.x);
     }
 
     // initial fog
@@ -169,7 +169,7 @@ export class World {
     return false;
   }
 
-  /** Spiral search for a deployable footprint near a unit (MCV redeploy). */
+  /** Spiral search for a deployable footprint near a unit (crawler redeploy). */
   findDeploySpot(u: Unit, def: BuildingDef): { x: number; y: number } | null {
     const baseX = Math.round(u.x - def.w / 2);
     const baseY = Math.round(u.y - def.h / 2);

@@ -47,14 +47,14 @@ describe('superweapons', () => {
     void pc;
   });
 
-  it('chrono relay teleports the strike force', () => {
+  it('phase gate teleports the strike force', () => {
     const w = chargedWorld();
-    w.addBuilding(getBuilding('chrono_relay'), 0, 27, 23, true);
+    w.addBuilding(getBuilding('phase_gate'), 0, 27, 23, true);
     const tank = w.addUnit(getUnit('wolf'), 0, 21.5, 26.5);
     run(w, 2);
-    w.players[0].powers.get('chronoshift')!.charge = getPower('chronoshift').chargeTicks;
+    w.players[0].powers.get('phase_jump')!.charge = getPower('phase_jump').chargeTicks;
     run(w, 2);
-    w.issue({ kind: 'firePower', player: 0, power: 'chronoshift', x: 60.5, y: 60.5, units: [tank.id] });
+    w.issue({ kind: 'firePower', player: 0, power: 'phase_jump', x: 60.5, y: 60.5, units: [tank.id] });
     run(w, 2);
     expect(Math.hypot(tank.x - 60.5, tank.y - 60.5)).toBeLessThan(6);
   });

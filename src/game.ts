@@ -14,7 +14,7 @@ import { Menu } from './ui/menu';
 import { Messages } from './ui/messages';
 import { Selection } from './ui/selection';
 import { AudioEngine } from './audio/audio';
-import { Eva, EVA_LINES } from './audio/eva';
+import { Announcer, VOICE_LINES } from './audio/announcer';
 
 const SPEEDS = [0.5, 1, 1.5, 2, 3];
 
@@ -45,7 +45,7 @@ export class Game {
     messagesEl: HTMLElement,
     menuEl: HTMLElement,
     private audio: AudioEngine,
-    private eva: Eva,
+    private announcer: Announcer,
   ) {
     this.world = new World(config);
     this.selection = new Selection(this.world, this.humanId);
@@ -76,7 +76,7 @@ export class Game {
     window.addEventListener('resize', () => this.renderer.resize());
 
     this.messages.push('Operation started. Deploy your Pioneer Crawler (select it, press D).', '#9fd4ff', 9000);
-    this.eva.say('Battle control online.');
+    this.announcer.say(VOICE_LINES.matchStart);
 
     this.lastTime = performance.now();
     this.loop(this.lastTime);
@@ -125,8 +125,8 @@ export class Game {
       onQuit: () => location.reload(),
       volume: this.audio.volume,
       onVolume: (v) => this.audio.setVolume(v),
-      evaOn: this.eva.enabled,
-      onEva: (on) => (this.eva.enabled = on),
+      voiceOn: this.announcer.enabled,
+      onVoice: (on) => (this.announcer.enabled = on),
     });
   }
 
@@ -170,7 +170,7 @@ export class Game {
     switch (e.kind) {
       case 'constructionComplete':
         if (mine) {
-          this.eva.say(EVA_LINES.constructionComplete);
+          this.announcer.say(VOICE_LINES.constructionComplete);
           this.audio.play('ready');
           this.messages.push(`${getBuilding(e.def).name} ready to place.`);
         }
@@ -180,19 +180,19 @@ export class Game {
         break;
       case 'unitReady':
         if (mine) {
-          this.eva.say(EVA_LINES.unitReady);
+          this.announcer.say(VOICE_LINES.unitReady);
           this.messages.push(`${getUnit(e.def).name} ready.`);
         }
         break;
       case 'insufficientFunds':
         if (mine) {
-          this.eva.say(EVA_LINES.insufficientFunds);
+          this.announcer.say(VOICE_LINES.insufficientFunds);
           this.audio.play('error');
         }
         break;
       case 'lowPower':
         if (mine) {
-          this.eva.say(EVA_LINES.lowPower);
+          this.announcer.say(VOICE_LINES.lowPower);
           this.messages.push('Low power: production slowed, defenses offline.', '#ffb04a');
         }
         break;
@@ -201,23 +201,23 @@ export class Game {
         break;
       case 'underAttack':
         if (mine) {
-          this.eva.say(e.isBase ? EVA_LINES.baseUnderAttack : EVA_LINES.forcesUnderAttack, true);
+          this.announcer.say(e.isBase ? VOICE_LINES.baseUnderAttack : VOICE_LINES.forcesUnderAttack, true);
           this.audio.play('alarm');
           this.messages.push(e.isBase ? 'Base under attack!' : 'Forces under attack!', '#ff6a4a');
         }
         break;
       case 'unitLost':
-        if (mine) this.eva.say(EVA_LINES.unitLost);
+        if (mine) this.announcer.say(VOICE_LINES.unitLost);
         break;
       case 'buildingLost':
         if (mine) {
-          this.eva.say(EVA_LINES.buildingLost);
+          this.announcer.say(VOICE_LINES.buildingLost);
           this.messages.push(`${getBuilding(e.def).name} lost!`, '#ff6a4a');
         }
         break;
       case 'buildingCaptured':
         if (mine) {
-          this.eva.say(EVA_LINES.buildingCaptured);
+          this.announcer.say(VOICE_LINES.buildingCaptured);
           this.messages.push(`${getBuilding(e.def).name} captured.`, '#7de08a');
         } else if (e.from === this.humanId) {
           this.messages.push(`${getBuilding(e.def).name} captured by the enemy!`, '#ff6a4a');
@@ -226,13 +226,13 @@ export class Game {
       case 'promoted':
         if (mine) {
           this.audio.play('promote');
-          this.eva.say(EVA_LINES.unitPromoted);
+          this.announcer.say(VOICE_LINES.unitPromoted);
         }
         break;
       case 'powerCharged': {
         const p = getPower(e.power);
         if (mine) {
-          this.eva.say(EVA_LINES.superweaponReady(p.name));
+          this.announcer.say(VOICE_LINES.superweaponReady(p.name));
           this.messages.push(`${p.name} ready.`, '#ffd24b');
         } else {
           this.messages.push(`Warning: enemy ${p.name} detected.`, '#ff6a4a');
@@ -241,12 +241,12 @@ export class Game {
       }
       case 'powerLaunched': {
         const p = getPower(e.power);
-        if (p.kind === 'chrono') this.audio.play('chrono');
+        if (p.kind === 'phase') this.audio.play('phase');
         if (p.kind === 'storm') this.messages.warn('ION STORM INBOUND');
         break;
       }
       case 'nukeWarning':
-        this.eva.say(EVA_LINES.nukeWarning, true);
+        this.announcer.say(VOICE_LINES.nukeWarning, true);
         this.messages.warn('BALLISTIC MISSILE LAUNCH DETECTED');
         this.audio.play('alarm');
         break;
@@ -271,7 +271,7 @@ export class Game {
       case 'playerDefeated': {
         const p = this.world.players[e.player];
         this.messages.push(`${p.config.name} has been eliminated.`, '#d8d8d8');
-        if (!mine) this.eva.say(EVA_LINES.playerDefeated);
+        if (!mine) this.announcer.say(VOICE_LINES.playerDefeated);
         break;
       }
       case 'gameOver':
@@ -291,7 +291,7 @@ export class Game {
   private endMatch(victory: boolean): void {
     if (this.ended) return;
     this.ended = true;
-    this.eva.say(victory ? EVA_LINES.victory : EVA_LINES.defeat, true);
+    this.announcer.say(victory ? VOICE_LINES.victory : VOICE_LINES.defeat, true);
     setTimeout(() => {
       this.menu.showEnd(
         victory,

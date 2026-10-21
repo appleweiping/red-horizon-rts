@@ -21,7 +21,7 @@ export const UNITS: UnitDef[] = [
     faction: 'both', class: 'vehicle', domain: 'ground', tab: 'vehicle',
     cost: 3000, buildTime: 375, hp: 600, armor: 'heavy', speed: 1.2, sight: 4,
     weapons: [], prerequisites: ['warfactory', 'lab'],
-    deployable: 'mcv', deploysInto: 'conyard',
+    deployable: 'base', deploysInto: 'conyard',
   },
 
   // ======================================================= Atlantic Concord --
@@ -72,12 +72,12 @@ export const UNITS: UnitDef[] = [
     turret: true, crushes: true,
   },
   {
-    id: 'phantom', name: 'Phantom Tank',
+    id: 'thicket', name: 'Thicket Tank',
     desc: 'Disguises itself as a tree while idle. A tank-hunting ambush predator.',
     faction: 'concord', class: 'vehicle', domain: 'ground', tab: 'vehicle',
     cost: 1000, buildTime: 125, hp: 240, armor: 'light', speed: 2.4, sight: 6,
-    weapons: ['phantom_gun'], prerequisites: ['warfactory', 'lab'],
-    mirage: true,
+    weapons: ['thicket_gun'], prerequisites: ['warfactory', 'lab'],
+    treeDisguise: true,
   },
   {
     id: 'lance', name: 'Lance Artillery',
