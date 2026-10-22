@@ -13,6 +13,7 @@ import { Input } from './ui/input';
 import { Menu } from './ui/menu';
 import { Messages } from './ui/messages';
 import { Selection } from './ui/selection';
+import { Tutorial, tipsWanted } from './ui/tutorial';
 import { AudioEngine } from './audio/audio';
 import { Announcer, VOICE_LINES } from './audio/announcer';
 
@@ -28,6 +29,7 @@ export class Game {
   private selection: Selection;
   private messages: Messages;
   private menu: Menu;
+  private tutorial: Tutorial | null = null;
 
   private humanId = 0;
   private speedIdx = 1;
@@ -77,6 +79,7 @@ export class Game {
 
     this.messages.push('Operation started. Deploy your Pioneer Crawler (select it, press D).', '#9fd4ff', 9000);
     this.announcer.say(VOICE_LINES.matchStart);
+    if (tipsWanted()) this.tutorial = new Tutorial(document.body, this.world, this.humanId);
 
     this.lastTime = performance.now();
     this.loop(this.lastTime);
@@ -141,6 +144,7 @@ export class Game {
     this.drawDragRect();
     this.minimap.draw(this.renderer.cam, time);
     this.hud.update(time, SPEEDS[this.speedIdx]);
+    this.tutorial?.update(time);
     if (!this.paused) this.input.update();
   };
 
@@ -291,6 +295,7 @@ export class Game {
   private endMatch(victory: boolean): void {
     if (this.ended) return;
     this.ended = true;
+    this.tutorial?.close(false);
     this.announcer.say(victory ? VOICE_LINES.victory : VOICE_LINES.defeat, true);
     setTimeout(() => {
       this.menu.showEnd(

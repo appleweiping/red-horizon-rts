@@ -3,6 +3,7 @@ import { DEFAULT_CREDITS, PLAYER_COLORS } from '../core/constants';
 import { FACTIONS } from '../data/factions';
 import { MAPS } from '../map/maps';
 import type { PlayerStats } from '../core/types';
+import { setTipsWanted, tipsWanted } from './tutorial';
 
 /** Main menu, pause overlay and end-of-match screen (plain DOM). */
 export class Menu {
@@ -19,6 +20,7 @@ export class Menu {
     const enemies = { v: 1 };
     const credits = { v: DEFAULT_CREDITS };
     const superweapons = { v: true };
+    const tips = { v: tipsWanted() };
 
     this.root.className = 'menu-root';
     this.root.replaceChildren();
@@ -78,6 +80,8 @@ export class Menu {
       (v) => (credits.v = parseInt(v, 10))));
     optRow.appendChild(this.optionGroup('SUPERWEAPONS', ['on', 'off'], 'on',
       (v) => (superweapons.v = v === 'on')));
+    optRow.appendChild(this.optionGroup('TIPS', ['on', 'off'], tips.v ? 'on' : 'off',
+      (v) => (tips.v = v === 'on')));
     panel.appendChild(optRow);
 
     const syncEnemyButtons = () => {
@@ -109,6 +113,7 @@ export class Menu {
           difficulty: difficulty.v,
         });
       }
+      setTipsWanted(tips.v);
       this.hide();
       this.onStart({
         mapId: mapId.v,
