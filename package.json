@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Red Horizon — an original, open-source isometric RTS in the spirit of classic 2000s real-time strategy games. Fully procedural assets, deterministic simulation, zero runtime dependencies.",
+  "description": "A single-player real-time strategy game for the browser: build a base, mine ore and fight computer opponents on isometric maps.",
   "license": "MIT",
   "scripts": {
     "dev": "vite --port 5199 --strictPort",
