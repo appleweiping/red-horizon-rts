@@ -6,8 +6,8 @@ A single-player real-time strategy game for the browser: build a base, mine ore 
 
 ![A match: the opening build-up, then a fight at the edge of the base](docs/media/match.gif)
 
-I wrote it from scratch in TypeScript to learn how the RTS games I grew up with
-work underneath: a fixed-tick simulation, grid pathfinding, an ore economy, a
+I wrote it from scratch in TypeScript to learn how classic RTS games work
+underneath: a fixed-tick simulation, grid pathfinding, an ore economy, a
 power grid and a computer opponent that has to play by the same rules as the
 player. The two factions, all unit names and all art are my own; sprites are
 drawn in code and sound effects are synthesized, so the game ships no image
