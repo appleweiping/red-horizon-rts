@@ -82,7 +82,7 @@ export class Hud {
     const brand = el('div', 'brand', 'RED HORIZON');
     this.root.appendChild(brand);
 
-    this.creditsEl = el('div', 'credits', '$ 0');
+    this.creditsEl = el('div', 'credits', `$ ${this.shownCredits.toLocaleString()}`);
     this.root.appendChild(this.creditsEl);
 
     const powerWrap = el('div', 'power-wrap');
