@@ -130,7 +130,7 @@ export class Menu {
       'Left-drag: select · Right-click: move / attack · A: attack-move · S: stop · ' +
       'D: deploy · H: base · Ctrl+0-9: groups · Esc: menu'));
     panel.appendChild(div('menu-footer',
-      'Inspired by the isometric RTS games of the early 2000s. All code, names and art are original. ' +
+      'Inspired by the isometric RTS games of the early 2000s. All code and art are original. ' +
       'Source: github.com/appleweiping/red-horizon-rts'));
 
     this.root.appendChild(panel);

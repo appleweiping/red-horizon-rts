@@ -136,24 +136,24 @@ export const WEAPONS: WeaponDef[] = [
 
   // ----------------------------------------------------- Pact navy weapons --
   {
-    id: 'scorpion_flak', name: 'Naval Flak',
+    id: 'barracuda_flak', name: 'Naval Flak',
     damage: 26, rof: 18, range: 6, warhead: 'flakhead', projectile: 'instant',
     antiGround: true, antiAir: true, sound: 'flak',
   },
   {
-    id: 'dreadnought_missile', name: 'Fortress Missiles',
+    id: 'citadel_missiles', name: 'Fortress Missiles',
     damage: 105, rof: 100, range: 12, minRange: 3, warhead: 'he', projectile: 'shell',
     speed: 0.3, splash: 1.5, antiGround: true, antiAir: false, sound: 'artillery',
   },
 
   // ------------------------------------------------------ Pact defenses ----
   {
-    id: 'sentry_mg', name: 'Sentry MG',
+    id: 'picket_mg', name: 'Picket MG',
     damage: 18, rof: 8, range: 5.5, warhead: 'sa', projectile: 'instant',
     antiGround: true, antiAir: false, sound: 'mg',
   },
   {
-    id: 'flak_cannon_gun', name: 'Flak Cannon',
+    id: 'flak_battery_gun', name: 'Heavy Flak',
     damage: 48, rof: 18, range: 8.5, warhead: 'flakhead', projectile: 'instant',
     splash: 0.5, antiGround: false, antiAir: true, sound: 'flak',
   },

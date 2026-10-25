@@ -67,16 +67,16 @@ describe('combat', () => {
     expect(getWeapon('sam_missile').antiGround).toBe(false);
     expect(getWeapon('sam_missile').antiAir).toBe(true);
     expect(getWeapon('bear_cannon').antiAir).toBe(false);
-    expect(getWeapon('flak_cannon_gun').antiGround).toBe(false);
+    expect(getWeapon('flak_battery_gun').antiGround).toBe(false);
   });
 
   it('defensive structures engage hostiles that walk into range', () => {
     const w = makeWorld();
-    const sentry = w.addBuilding(getBuilding('sentry'), 1, 30, 30, true);
+    const picket = w.addBuilding(getBuilding('picket'), 1, 30, 30, true);
     const victim = w.addUnit(getUnit('guardsman'), 0, 32.5, 32.5);
     run(w, 60);
     expect(victim.hp).toBeLessThan(victim.def.hp);
-    expect(sentry.dead).toBe(false);
+    expect(picket.dead).toBe(false);
   });
 
   it('treats allies and neutrals correctly', () => {

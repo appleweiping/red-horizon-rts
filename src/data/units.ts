@@ -4,7 +4,8 @@ import type { UnitDef } from '../core/types';
  * Complete unit roster for both factions: infantry, vehicles, aircraft and
  * ships. Archetypes follow the classic RTS mold (basic rifleman, engineer,
  * medium vs heavy tank doctrine, long-range artillery, harvester economy,
- * a deployable construction vehicle) with original names, art and stats.
+ * a deployable construction vehicle) with original art and stats. Names are
+ * my own apart from generic terms such as Engineer, Militia or IFV.
  */
 export const UNITS: UnitDef[] = [
   // =================================================== shared (both sides) --
@@ -128,7 +129,7 @@ export const UNITS: UnitDef[] = [
     weapons: ['arc_gauntlet'], prerequisites: ['barracks'],
   },
   {
-    id: 'flaktrooper', name: 'Flak Trooper',
+    id: 'skygunner', name: 'Sky Gunner',
     desc: 'Man-portable flak. The infantry answer to enemy air power.',
     faction: 'pact', class: 'infantry', domain: 'ground', tab: 'infantry',
     cost: 300, buildTime: 38, hp: 55, armor: 'flak', speed: 1.4, sight: 5,
@@ -189,18 +190,18 @@ export const UNITS: UnitDef[] = [
   },
   // navy
   {
-    id: 'seascorpion', name: 'Sea Scorpion',
+    id: 'barracuda', name: 'Barracuda Gunboat',
     desc: 'Flak gunboat. Escorts the fleet and rakes the shoreline.',
     faction: 'pact', class: 'ship', domain: 'water', tab: 'naval',
     cost: 800, buildTime: 100, hp: 280, armor: 'medium', speed: 3.2, sight: 6,
-    weapons: ['scorpion_flak'], prerequisites: ['shipyard'], turret: true,
+    weapons: ['barracuda_flak'], prerequisites: ['shipyard'], turret: true,
   },
   {
-    id: 'dreadnought', name: 'Dreadnought',
+    id: 'citadel', name: 'Citadel Battleship',
     desc: 'Missile battleship. Erases coastal bases from beyond reply.',
     faction: 'pact', class: 'ship', domain: 'water', tab: 'naval',
     cost: 2000, buildTime: 250, hp: 500, armor: 'heavy', speed: 1.8, sight: 5,
-    weapons: ['dreadnought_missile'], prerequisites: ['shipyard', 'lab'],
+    weapons: ['citadel_missiles'], prerequisites: ['shipyard', 'lab'],
   },
 ];
 

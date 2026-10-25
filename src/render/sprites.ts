@@ -300,7 +300,7 @@ function drawShip(
   ctx: CanvasRenderingContext2D, u: Unit, cx: number, cy: number, color: string,
 ): void {
   const id = u.def.id;
-  const big = id === 'dreadnought' || id === 'cruiser';
+  const big = id === 'citadel' || id === 'cruiser';
   ctx.save();
   topDown(ctx, cx, cy - 4, u.facing);
   const L = big ? 40 : 28;
@@ -328,7 +328,7 @@ function drawShip(
   // superstructure
   ctx.fillStyle = shade(color, 1.1);
   ctx.fillRect(-6, -W / 2 + 3, big ? 14 : 9, W - 6);
-  if (id === 'dreadnought') {
+  if (id === 'citadel') {
     ctx.fillStyle = '#222';
     ctx.fillRect(6, -4, 10, 3);
     ctx.fillRect(6, 1, 10, 3); // missile ramps
@@ -561,14 +561,14 @@ function paintBuilding(
       break;
     }
     case 'bunker':
-    case 'sentry': {
+    case 'picket': {
       isoBox(ctx, 0.15, 0.15, 0.7, 0.7, 12, '#8f9499');
       ctx.fillStyle = '#2f3338';
       ctx.fillRect(ptX(0.5, 0.5) - 7, ptY(0.5, 0.5) - 18, 14, 6); // slit
       break;
     }
     case 'sam_site':
-    case 'flak_cannon': {
+    case 'flak_battery': {
       isoBox(ctx, 0.15, 0.15, 0.7, 0.7, 8, '#8f9499');
       ctx.fillStyle = shade(color, 1.0);
       ctx.beginPath();

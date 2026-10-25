@@ -175,8 +175,8 @@ function planStructures(
 ): void {
   const faction = player.config.faction;
   const powerPlant = faction === 'pact' ? 'combustion_plant' : 'fusion_plant';
-  const basicDef = faction === 'pact' ? 'sentry' : 'bunker';
-  const aaDef = faction === 'pact' ? 'flak_cannon' : 'sam_site';
+  const basicDef = faction === 'pact' ? 'picket' : 'bunker';
+  const aaDef = faction === 'pact' ? 'flak_battery' : 'sam_site';
   const bigDef = faction === 'pact' ? 'arc_tower' : 'lance_tower';
   const superA = faction === 'pact' ? 'icbm_silo' : 'storm_array';
   const superB = faction === 'pact' ? 'aegis_generator' : 'phase_gate';
@@ -289,7 +289,7 @@ function planUnits(world: World, player: PlayerState, own: OwnForces, tune: Tuni
   const enemyAir = countEnemyAir(world, player);
   if (faction === 'pact') {
     const wantFlak = Math.min(6, 2 + enemyAir);
-    if (count(own, 'flaktrooper') < wantFlak) maybeQueueUnit(world, player, 'infantry', 'flaktrooper');
+    if (count(own, 'skygunner') < wantFlak) maybeQueueUnit(world, player, 'infantry', 'skygunner');
     else if (count(own, 'militia') < 6) maybeQueueUnit(world, player, 'infantry', 'militia');
     else if (count(own, 'arctrooper') < 4) maybeQueueUnit(world, player, 'infantry', 'arctrooper');
 
@@ -299,8 +299,8 @@ function planUnits(world: World, player: PlayerState, own: OwnForces, tune: Tuni
     else maybeQueueUnit(world, player, 'vehicle', 'viper');
 
     if (count(own, 'leviathan') < 2) maybeQueueUnit(world, player, 'air', 'leviathan');
-    if (!memory(world, player).navalGiveUp && count(own, 'seascorpion') < 2) {
-      maybeQueueUnit(world, player, 'naval', 'seascorpion');
+    if (!memory(world, player).navalGiveUp && count(own, 'barracuda') < 2) {
+      maybeQueueUnit(world, player, 'naval', 'barracuda');
     }
   } else {
     const wantIfv = Math.min(6, 2 + enemyAir);

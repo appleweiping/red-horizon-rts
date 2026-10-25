@@ -9,7 +9,7 @@ A single-player real-time strategy game for the browser: build a base, mine ore 
 I wrote it from scratch in TypeScript to learn how classic RTS games work
 underneath: a fixed-tick simulation, grid pathfinding, an ore economy, a
 power grid and a computer opponent that has to play by the same rules as the
-player. The two factions, all unit names and all art are my own; sprites are
+player. The two factions, their signature units and all art are my own; sprites are
 drawn in code and sound effects are synthesized, so the game ships no image
 or audio files.
 
@@ -67,7 +67,7 @@ There are no touch controls; on a phone the game will load but you cannot really
 | Signature units | Thicket Tank (hides as a tree while idle), Agent Naomi (commando with C4), Lance Artillery (beam) | Demolisher (suicide bomber), Behemoth Tank, Leviathan (bomber airship) |
 | Superweapons | Tempest Strike (storm), Phase Gate (teleport a group) | ICBM Launch, Aegis Field (8 s of invulnerability) |
 
-Full unit list, damage table and tech tree: [docs/GAMEPLAY.md](docs/GAMEPLAY.md).
+Rules, damage table and superweapons: [docs/GAMEPLAY.md](docs/GAMEPLAY.md).
 
 ![Lance Towers and Guardsmen holding off an attack on a Concord base](docs/media/battle.jpg)
 
@@ -120,5 +120,7 @@ Node 里无头运行测试；单位和建筑都由代码绘制，音效由 WebAu
 ## License and credits
 
 MIT, see [LICENSE](LICENSE). The gameplay is inspired by the isometric RTS
-games of the early 2000s, Red Alert 2 in particular. This project uses none of
-their code, art, sound or names and is not affiliated with Electronic Arts.
+games of the early 2000s, Red Alert 2 in particular. All code, art and sound
+are my own. Unit and faction names are my own too, apart from generic genre
+and military terms such as Construction Yard, War Factory, Ore Refinery,
+Engineer and SAM Site. Not affiliated with Electronic Arts.
